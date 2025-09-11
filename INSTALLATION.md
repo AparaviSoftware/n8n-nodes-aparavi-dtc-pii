@@ -1,24 +1,33 @@
 # Installation Guide for Aparavi PII Censor Node
 
-## Method 1: Install as npm package (Recommended)
+## Method 1: Community Nodes (Recommended)
 
-1. **Install the package globally:**
+1. **Open n8n and go to Settings:**
+   - Click on **Settings** in the left sidebar
+   - Navigate to **Community Nodes**
+
+2. **Install the community node:**
+   - Click **Install a community node**
+   - Enter the package name: `n8n-nodes-aparavi-dtc-pii`
+   - Click **Install**
+
+3. **The node will be automatically available:**
+   - Look for "Aparavi PII Censor" in the Transform category
+   - No restart required!
+
+## Method 2: Manual npm installation
+
+1. **Install the package:**
    ```bash
-   npm install -g /path/to/your/n8n-pii-node
+   npm install n8n-nodes-aparavi-dtc-pii
    ```
 
-2. **Or install locally in your n8n project:**
-   ```bash
-   cd /path/to/your/n8n/project
-   npm install /path/to/your/n8n-pii-node
-   ```
-
-3. **Restart n8n:**
+2. **Restart n8n:**
    ```bash
    n8n start
    ```
 
-## Method 2: Copy to n8n custom nodes directory
+## Method 3: Copy to n8n custom nodes directory (Advanced)
 
 1. **Find your n8n custom nodes directory:**
    - Default location: `~/.n8n/custom/`
@@ -26,12 +35,12 @@
 
 2. **Copy the dist folder:**
    ```bash
-   cp -r /path/to/n8n-pii-node/dist /path/to/n8n/custom/nodes/n8n-nodes-aparavi-pii
+   cp -r /path/to/n8n-pii-node/dist /path/to/n8n/custom/nodes/n8n-nodes-aparavi-dtc-pii
    ```
 
 3. **Install dependencies:**
    ```bash
-   cd /path/to/n8n/custom/nodes/n8n-nodes-aparavi-pii
+   cd /path/to/n8n/custom/nodes/n8n-nodes-aparavi-dtc-pii
    npm install
    ```
 
@@ -40,24 +49,10 @@
    n8n start
    ```
 
-## Method 3: Development mode (for testing)
+## Package Information
 
-1. **Link the package:**
-   ```bash
-   cd /path/to/n8n-pii-node
-   npm link
-   ```
-
-2. **Link in n8n:**
-   ```bash
-   cd /path/to/your/n8n/project
-   npm link n8n-nodes-aparavi-pii
-   ```
-
-3. **Restart n8n:**
-   ```bash
-   n8n start
-   ```
+- **npm Package**: [n8n-nodes-aparavi-dtc-pii](https://www.npmjs.com/package/n8n-nodes-aparavi-dtc-pii)
+- **GitHub Repository**: [AparaviSoftware/n8n-nodes-aparavi-dtc-pii](https://github.com/AparaviSoftware/n8n-nodes-aparavi-dtc-pii)
 
 ## Troubleshooting
 

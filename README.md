@@ -15,9 +15,19 @@ A powerful n8n community node that provides flexible PII (Personally Identifiabl
 
 ## Installation
 
+### Method 1: Community Nodes (Recommended)
+
+1. Open n8n and go to **Settings** → **Community Nodes**
+2. Click **Install a community node**
+3. Enter the package name: `n8n-nodes-aparavi-dtc-pii`
+4. Click **Install**
+5. The node will be automatically available in the Transform category
+
+### Method 2: Manual Installation
+
 1. Install the package:
 ```bash
-npm install n8n-nodes-aparavi-pii
+npm install n8n-nodes-aparavi-dtc-pii
 ```
 
 2. Copy the node files to your n8n custom nodes directory:
@@ -26,6 +36,11 @@ cp -r dist/* /path/to/your/n8n/custom/nodes/
 ```
 
 3. Restart n8n to load the new node.
+
+### Package Information
+
+- **npm Package**: [n8n-nodes-aparavi-dtc-pii](https://www.npmjs.com/package/n8n-nodes-aparavi-dtc-pii)
+- **GitHub Repository**: [AparaviSoftware/n8n-nodes-aparavi-dtc-pii](https://github.com/AparaviSoftware/n8n-nodes-aparavi-dtc-pii)
 
 ## Configuration
 
