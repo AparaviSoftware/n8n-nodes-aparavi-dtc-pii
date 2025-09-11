@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-aparavi-dtc-pii",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "n8n community node for PII anonymization using Aparavi DTC API. Detect and censor personally identifiable information in n8n workflows.",
   "keywords": [
     "n8n-community-node-package",
@@ -71,3 +71,4 @@
     "n8n-workflow": "*"
   }
 }
+
