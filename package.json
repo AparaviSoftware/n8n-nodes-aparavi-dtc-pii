@@ -1,15 +1,27 @@
 {
   "name": "n8n-nodes-aparavi-dtc-pii",
   "version": "1.0.0",
-  "description": "n8n community node for Aparavi PII (Personally Identifiable Information) censoring",
+  "description": "n8n community node for PII anonymization using Aparavi DTC API. Detect and censor personally identifiable information in n8n workflows.",
   "keywords": [
     "n8n-community-node-package",
+    "n8n",
+    "n8n-node",
+    "n8n-community",
     "pii",
+    "anonymize",
+    "anonymization",
+    "censor",
+    "censoring",
     "privacy",
     "data-protection",
     "aparavi",
+    "aparavi-dtc",
     "gdpr",
-    "hipaa"
+    "hipaa",
+    "personally-identifiable-information",
+    "data-privacy",
+    "workflow",
+    "automation"
   ],
   "license": "MIT",
   "homepage": "https://github.com/AparaviSoftware/n8n-nodes-aparavi-dtc-pii",
@@ -26,9 +38,9 @@
     "build": "tsc && gulp build:icons",
     "dev": "tsc --watch",
     "format": "prettier nodes --write",
-    "lint": "eslint nodes package.json",
-    "lintfix": "eslint nodes package.json --fix",
-    "prepublishOnly": "npm run build && npm run lint -s"
+    "lint": "eslint . --ext .js,.ts --ignore-path .gitignore",
+    "lintfix": "eslint . --ext .js,.ts --ignore-path .gitignore --fix",
+    "prepublishOnly": "npm run build"
   },
   "files": [
     "dist"
