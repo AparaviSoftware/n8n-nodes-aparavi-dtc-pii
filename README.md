@@ -1,41 +1,28 @@
-# Aparavi PII Censor Node for n8n
+# Aparavi PII & HIPAA Censor Node for n8n
 
-A powerful n8n community node that provides flexible PII (Personally Identifiable Information) censoring using the Aparavi DTC (Data Transformation Cloud) service. This node can handle any type of input data and automatically detect and censor PII according to various compliance standards.
+A powerful n8n community node that provides flexible PII (Personally Identifiable Information) and HIPAA healthcare data censoring using the Aparavi DTC (Data Transformation Cloud) service. This node can handle any type of input data and automatically detect and censor PII and healthcare data according to various compliance standards including GDPR, HIPAA, and other privacy regulations.
 
 ## Features
 
+- **PII & HIPAA Censoring**: Detects and censors both personally identifiable information and healthcare data
+- **Compliance Ready**: Supports GDPR, HIPAA, and other privacy regulations
 - **Flexible Input Handling**: Accepts any input from previous nodes (text, JSON, arrays, objects)
 - **Auto-detection**: Automatically detects input type and processes accordingly
-- **Multiple PII Types**: Supports USA PII, International PII, and Healthcare Data (HIPAA)
+- **Multiple Data Types**: Supports USA PII, International PII, and Healthcare Data (HIPAA)
 - **Field-specific Processing**: Process all fields or specific fields only
-- **Test Mode**: Built-in test mode for development and validation
-- **Preserve Structure**: Maintains original data structure while censoring PII
+- **Preserve Structure**: Maintains original data structure while censoring sensitive data
 - **Batch Processing**: Efficiently processes arrays and collections
 - **Error Handling**: Robust error handling with continue-on-fail support
 
 ## Installation
 
-### Method 1: Community Nodes (Recommended)
+### Community Nodes Installation
 
 1. Open n8n and go to **Settings** → **Community Nodes**
 2. Click **Install a community node**
 3. Enter the package name: `n8n-nodes-aparavi-dtc-pii`
 4. Click **Install**
 5. The node will be automatically available in the Transform category
-
-### Method 2: Manual Installation
-
-1. Install the package:
-```bash
-npm install n8n-nodes-aparavi-dtc-pii
-```
-
-2. Copy the node files to your n8n custom nodes directory:
-```bash
-cp -r dist/* /path/to/your/n8n/custom/nodes/
-```
-
-3. Restart n8n to load the new node.
 
 ### Package Information
 
@@ -44,34 +31,36 @@ cp -r dist/* /path/to/your/n8n/custom/nodes/
 
 ## Configuration
 
-### Credentials
+### Getting an Aparavi API Key
 
-You'll need to configure the Aparavi API credentials:
+Before using this node, you'll need to sign up for an Aparavi DTC API key:
+
+1. **Visit the Aparavi DTC Usage page**: [https://dtc.aparavi.com/usage](https://dtc.aparavi.com/usage)
+2. **Sign up for an account** or log in if you already have one
+3. **Generate an API key** from your dashboard
+4. **Copy the API key** for use in n8n
+
+### Setting up Credentials in n8n
 
 1. Go to n8n Settings > Credentials
 2. Add new credential of type "Aparavi API"
-3. Enter your Aparavi DTC API key
+3. Enter your Aparavi DTC API key from the signup process above
+4. Test the connection to ensure it's working
 
 ### Node Parameters
-
-#### Operation
-- **Censor PII**: Main operation to censor PII in input data
-- **Test Mode**: Test the connection and show sample output
 
 #### PII Type
 - **USA PII**: Detects and censors USA-specific PII (SSN, driver license, etc.)
 - **International PII**: Detects and censors international PII (passport, phone, etc.)
 - **Healthcare Data (HIPAA)**: Detects and censors healthcare data under HIPAA regulations
 
-#### Input Data
-- **Auto-detect**: Automatically detects input type and processes accordingly
+#### Input Data Mode
 - **All Fields**: Process all fields in objects/arrays
 - **Specific Fields**: Process only specified fields (comma-separated list)
 
-#### Options
-- **Preserve Structure**: Whether to preserve the original data structure
-- **Include Metadata**: Whether to include PII detection metadata in the output
-- **Batch Size**: Number of items to process in each batch (for arrays)
+#### Fields to Process
+- **Comma-separated list**: Specify which fields to process when using "Specific Fields" mode
+- **Example**: `name,email,phone,ssn,address`
 
 ## Usage Examples
 
@@ -80,12 +69,11 @@ You'll need to configure the Aparavi API credentials:
 ```json
 {
   "input": "John Smith, SSN: 123-45-6789, Phone: (555) 123-4567",
-  "piiType": "usa",
-  "operation": "censor"
+  "piiType": "usa"
 }
 ```
 
-### Object Processing
+### Object Processing (All Fields)
 
 ```json
 {
@@ -96,8 +84,7 @@ You'll need to configure the Aparavi API credentials:
     "phone": "(555) 987-6543"
   },
   "piiType": "usa",
-  "operation": "censor",
-  "inputData": "all"
+  "inputDataMode": "all"
 }
 ```
 
@@ -112,9 +99,22 @@ You'll need to configure the Aparavi API credentials:
     "notes": "Some notes here"
   },
   "piiType": "usa",
-  "operation": "censor",
-  "inputData": "specific",
+  "inputDataMode": "specific",
   "fieldsToProcess": "name,ssn"
+}
+```
+
+### HIPAA Healthcare Data
+
+```json
+{
+  "input": {
+    "patientName": "Alice Williams",
+    "ssn": "111-22-3333",
+    "medicalRecord": "Patient has hypertension",
+    "insuranceNumber": "BC123456789"
+  },
+  "piiType": "hipaa"
 }
 ```
 
@@ -132,28 +132,11 @@ You'll need to configure the Aparavi API credentials:
       "ssn": "987-65-4321"
     }
   ],
-  "piiType": "usa",
-  "operation": "censor"
+  "piiType": "usa"
 }
 ```
 
-## Test Mode
-
-The node includes a built-in test mode that allows you to:
-
-1. Test the connection to Aparavi DTC
-2. Try different PII types with sample data
-3. Validate the node configuration
-4. See sample outputs before processing real data
-
-### Test Sample Data
-
-- **USA PII Sample**: Contains SSN, driver license, phone, email, address
-- **International PII Sample**: Contains passport, international phone, address
-- **HIPAA Sample**: Contains patient data, medical records, SSN
-- **Custom Sample**: Use your own test data
-
-## Supported PII Types
+## Supported Data Types
 
 ### USA PII
 - Social Security Numbers (SSN)
@@ -172,12 +155,14 @@ The node includes a built-in test mode that allows you to:
 - Various country-specific identifiers
 
 ### Healthcare Data (HIPAA)
-- Patient Names
+- Patient Names and Identifiers
 - Medical Record Numbers
 - Health Insurance Numbers
-- Medical Conditions
+- Medical Conditions and Diagnoses
 - Treatment Information
 - Provider Information
+- Prescription Information
+- Medical Device Serial Numbers
 
 ## Error Handling
 
@@ -188,26 +173,6 @@ The node includes comprehensive error handling:
 - **Processing Errors**: Handles individual item processing failures
 - **Continue on Fail**: Option to continue processing other items if one fails
 
-## Development
-
-### Building
-
-```bash
-npm run build
-```
-
-### Linting
-
-```bash
-npm run lint
-```
-
-### Formatting
-
-```bash
-npm run format
-```
-
 ## License
 
 MIT License - see LICENSE file for details.
@@ -216,15 +181,20 @@ MIT License - see LICENSE file for details.
 
 For issues and questions:
 
-1. Check the [Aparavi Documentation](https://docs.aparavi.com)
-2. Open an issue in this repository
-3. Contact the maintainer
+1. **Aparavi DTC Documentation**: [https://dtc.aparavi.com/usage](https://dtc.aparavi.com/usage)
+2. **GitHub Issues**: [Report problems or request features](https://github.com/AparaviSoftware/n8n-nodes-aparavi-dtc-pii/issues)
+3. **n8n Community**: [n8n Community Forum](https://community.n8n.io/)
 
 ## Changelog
+
+### v1.1.1
+- Enhanced PII and HIPAA data detection
+- Improved error handling and validation
+- Streamlined configuration options
+- Updated documentation and examples
 
 ### v1.0.0
 - Initial release
 - Support for USA PII, International PII, and HIPAA data
 - Flexible input handling for any data type
-- Test mode functionality
 - Comprehensive error handling
