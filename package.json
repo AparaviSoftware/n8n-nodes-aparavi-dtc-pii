@@ -1,5 +1,5 @@
 {
-  "name": "n8n-nodes-aparavi-pii",
+  "name": "n8n-nodes-aparavi-dtc-pii",
   "version": "1.0.0",
   "description": "n8n community node for Aparavi PII (Personally Identifiable Information) censoring",
   "keywords": [
@@ -12,14 +12,14 @@
     "hipaa"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/jamestucker/n8n-pii-node",
+  "homepage": "https://github.com/AparaviSoftware/n8n-nodes-aparavi-dtc-pii",
   "author": {
     "name": "James Tucker",
     "email": "james@example.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jamestucker/n8n-pii-node.git"
+    "url": "https://github.com/AparaviSoftware/n8n-nodes-aparavi-dtc-pii.git"
   },
   "main": "dist/index.js",
   "scripts": {
