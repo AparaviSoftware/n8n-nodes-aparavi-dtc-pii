@@ -2,6 +2,8 @@
 
 A powerful n8n community node that provides flexible PII (Personally Identifiable Information) and HIPAA healthcare data censoring using the Aparavi DTC (Data Transformation Cloud) service. This node can handle any type of input data and automatically detect and censor PII and healthcare data according to various compliance standards including GDPR, HIPAA, and other privacy regulations.
 
+> **🚀 Get Started**: First, sign up for your free Aparavi API key at [https://dtc.aparavi.com/usage](https://dtc.aparavi.com/usage)
+
 ## Features
 
 - **PII & HIPAA Censoring**: Detects and censors both personally identifiable information and healthcare data
@@ -14,15 +16,31 @@ A powerful n8n community node that provides flexible PII (Personally Identifiabl
 - **Batch Processing**: Efficiently processes arrays and collections
 - **Error Handling**: Robust error handling with continue-on-fail support
 
-## Installation
+## 🚀 Get Your Free API Key
 
-### Community Nodes Installation
+**Before you start, you'll need a free Aparavi API key:**
 
+👉 **[Sign up at https://dtc.aparavi.com/usage](https://dtc.aparavi.com/usage)** 👈
+
+This takes just 2 minutes and gives you access to powerful PII and HIPAA censoring capabilities.
+
+## Quick Start
+
+### Step 1: Get Your API Key
+**Sign up for your free Aparavi API key**: [https://dtc.aparavi.com/usage](https://dtc.aparavi.com/usage)
+
+### Step 2: Install the Node
 1. Open n8n and go to **Settings** → **Community Nodes**
 2. Click **Install a community node**
 3. Enter the package name: `n8n-nodes-aparavi-dtc-pii`
 4. Click **Install**
 5. The node will be automatically available in the Transform category
+
+### Step 3: Configure Credentials
+1. Go to n8n Settings > Credentials
+2. Add new credential of type "Aparavi API"
+3. Enter your API key from Step 1
+4. Test the connection
 
 ### Package Information
 
@@ -31,20 +49,20 @@ A powerful n8n community node that provides flexible PII (Personally Identifiabl
 
 ## Configuration
 
-### Getting an Aparavi API Key
+### API Key Setup
 
-Before using this node, you'll need to sign up for an Aparavi DTC API key:
+If you haven't already, get your free Aparavi API key:
 
-1. **Visit the Aparavi DTC Usage page**: [https://dtc.aparavi.com/usage](https://dtc.aparavi.com/usage)
-2. **Sign up for an account** or log in if you already have one
-3. **Generate an API key** from your dashboard
-4. **Copy the API key** for use in n8n
+1. **Visit**: [https://dtc.aparavi.com/usage](https://dtc.aparavi.com/usage)
+2. **Sign up** for a free account or log in
+3. **Generate** your API key from the dashboard
+4. **Copy** the API key for use in n8n
 
-### Setting up Credentials in n8n
+### n8n Credentials Setup
 
 1. Go to n8n Settings > Credentials
 2. Add new credential of type "Aparavi API"
-3. Enter your Aparavi DTC API key from the signup process above
+3. Enter your API key from above
 4. Test the connection to ensure it's working
 
 ### Node Parameters
@@ -66,23 +84,50 @@ Before using this node, you'll need to sign up for an Aparavi DTC API key:
 
 ### Basic Text Censoring
 
+**Input:**
+```
+"John Smith, SSN: 123-45-6789, Phone: (555) 123-4567, Email: john@example.com"
+```
+
+**Output:**
+```
+"████ ████, SSN: ███-██-████, Phone: (███) ███-████, Email: ███@███.███"
+```
+
+**Configuration:**
 ```json
 {
-  "input": "John Smith, SSN: 123-45-6789, Phone: (555) 123-4567",
   "piiType": "usa"
 }
 ```
 
 ### Object Processing (All Fields)
 
+**Input:**
 ```json
 {
-  "input": {
-    "name": "Jane Doe",
-    "email": "jane.doe@example.com",
-    "ssn": "987-65-4321",
-    "phone": "(555) 987-6543"
-  },
+  "name": "Jane Doe",
+  "email": "jane.doe@example.com",
+  "ssn": "987-65-4321",
+  "phone": "(555) 987-6543",
+  "address": "123 Main St, New York, NY 10001"
+}
+```
+
+**Output:**
+```json
+{
+  "name": "████ ████",
+  "email": "████@███.███",
+  "ssn": "███-██-████",
+  "phone": "(███) ███-████",
+  "address": "███ ███ ██, ███ ███, ██ █████"
+}
+```
+
+**Configuration:**
+```json
+{
   "piiType": "usa",
   "inputDataMode": "all"
 }
@@ -90,14 +135,31 @@ Before using this node, you'll need to sign up for an Aparavi DTC API key:
 
 ### Specific Fields Only
 
+**Input:**
 ```json
 {
-  "input": {
-    "name": "John Smith",
-    "email": "john@example.com",
-    "ssn": "123-45-6789",
-    "notes": "Some notes here"
-  },
+  "name": "John Smith",
+  "email": "john@example.com",
+  "ssn": "123-45-6789",
+  "notes": "Customer prefers email communication",
+  "orderId": "ORD-12345"
+}
+```
+
+**Output:**
+```json
+{
+  "name": "████ ████",
+  "email": "john@example.com",
+  "ssn": "███-██-████",
+  "notes": "Customer prefers email communication",
+  "orderId": "ORD-12345"
+}
+```
+
+**Configuration:**
+```json
+{
   "piiType": "usa",
   "inputDataMode": "specific",
   "fieldsToProcess": "name,ssn"
@@ -106,32 +168,72 @@ Before using this node, you'll need to sign up for an Aparavi DTC API key:
 
 ### HIPAA Healthcare Data
 
+**Input:**
 ```json
 {
-  "input": {
-    "patientName": "Alice Williams",
-    "ssn": "111-22-3333",
-    "medicalRecord": "Patient has hypertension",
-    "insuranceNumber": "BC123456789"
-  },
+  "patientName": "Alice Williams",
+  "ssn": "111-22-3333",
+  "medicalRecord": "Patient Alice Williams has hypertension, prescribed Lisinopril 10mg",
+  "insuranceNumber": "BC123456789",
+  "dateOfBirth": "1975-04-12"
+}
+```
+
+**Output:**
+```json
+{
+  "patientName": "████ ███████",
+  "ssn": "███-██-████",
+  "medicalRecord": "Patient ████ ███████ has hypertension, prescribed ████████ 10mg",
+  "insuranceNumber": "██-████-███",
+  "dateOfBirth": "████-██-██"
+}
+```
+
+**Configuration:**
+```json
+{
   "piiType": "hipaa"
 }
 ```
 
 ### Array Processing
 
+**Input:**
+```json
+[
+  {
+    "name": "John Smith",
+    "ssn": "123-45-6789",
+    "email": "john@company.com"
+  },
+  {
+    "name": "Jane Doe", 
+    "ssn": "987-65-4321",
+    "email": "jane@company.com"
+  }
+]
+```
+
+**Output:**
+```json
+[
+  {
+    "name": "████ ████",
+    "ssn": "███-██-████",
+    "email": "████@███.███"
+  },
+  {
+    "name": "████ ███",
+    "ssn": "███-██-████", 
+    "email": "████@███.███"
+  }
+]
+```
+
+**Configuration:**
 ```json
 {
-  "input": [
-    {
-      "name": "John Smith",
-      "ssn": "123-45-6789"
-    },
-    {
-      "name": "Jane Doe",
-      "ssn": "987-65-4321"
-    }
-  ],
   "piiType": "usa"
 }
 ```
@@ -179,11 +281,12 @@ MIT License - see LICENSE file for details.
 
 ## Support
 
-For issues and questions:
+Need help? We're here to assist:
 
-1. **Aparavi DTC Documentation**: [https://dtc.aparavi.com/usage](https://dtc.aparavi.com/usage)
+1. **Aparavi Discord**: [Join our Discord community](https://discord.gg/ur9sRvJt) and visit the #technical-support channel for real-time help
 2. **GitHub Issues**: [Report problems or request features](https://github.com/AparaviSoftware/n8n-nodes-aparavi-dtc-pii/issues)
-3. **n8n Community**: [n8n Community Forum](https://community.n8n.io/)
+3. **n8n Community**: [n8n Community Forum](https://community.n8n.io/) for n8n-specific questions
+4. **API Key Help**: [Get your free API key](https://dtc.aparavi.com/usage) if you haven't already
 
 ## Changelog
 
