@@ -25137,16 +25137,18 @@ class AparaviDTC {
    */
   async executePipeline(pipelineJson) {
     try {
-      // The API expects the pipeline configuration directly
-      const requestBody = pipelineJson;
+      // The execution API expects the pipeline configuration wrapped in a 'pipeline' key
+      const requestBody = {
+        pipeline: pipelineJson
+      };
       
       console.log('🔍 ===== DETAILED PIPELINE DEBUG =====');
       console.log('🔍 Raw pipelineJson received:', JSON.stringify(pipelineJson, null, 2));
       console.log('🔍 Request body being sent:', JSON.stringify(requestBody, null, 2));
-      console.log('🔍 Pipeline source:', requestBody.source);
-      console.log('🔍 Pipeline project_id:', requestBody.project_id);
-      console.log('🔍 Pipeline components count:', requestBody.components ? requestBody.components.length : 'undefined');
-      console.log('🔍 Component IDs:', requestBody.components ? requestBody.components.map(c => c.id) : 'undefined');
+      console.log('🔍 Pipeline source:', requestBody.pipeline.source);
+      console.log('🔍 Pipeline project_id:', requestBody.pipeline.project_id);
+      console.log('🔍 Pipeline components count:', requestBody.pipeline.components ? requestBody.pipeline.components.length : 'undefined');
+      console.log('🔍 Component IDs:', requestBody.pipeline.components ? requestBody.pipeline.components.map(c => c.id) : 'undefined');
       console.log('🔍 ===== END DEBUG =====');
       
       const response = await fetch(`${this.apiBaseUrl}/task`, {
