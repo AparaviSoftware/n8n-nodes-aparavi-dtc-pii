@@ -25125,10 +25125,8 @@ class AparaviDTC {
    */
   async executePipeline(pipelineJson) {
     try {
-      // The API expects the pipeline configuration to be wrapped in a 'pipeline' key
-      const requestBody = {
-        pipeline: pipelineJson
-      };
+      // The API expects the pipeline configuration directly
+      const requestBody = pipelineJson;
       
       const response = await fetch(`${this.apiBaseUrl}/task`, {
         method: 'PUT',
