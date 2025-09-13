@@ -24461,7 +24461,7 @@ const PREDEFINED_PIPELINE_CONFIGS = {
   },
   
   CENSOR_USA_PII: {
-    pipeline: {
+    "pipeline": {
         "components": [
           {
             "id": "webhook_1",
@@ -25037,7 +25037,7 @@ const PREDEFINED_PIPELINE_CONFIGS = {
           }
         ],
         "source": "webhook_1",
-        "id": "c71ab76c-d609-42ed-ad32-7c966e8c778b"
+        "project_id": "c71ab76c-d609-42ed-ad32-7c966e8c778b"
     }
   },
   
