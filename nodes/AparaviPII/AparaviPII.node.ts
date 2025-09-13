@@ -13,7 +13,7 @@ export class AparaviPII implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Aparavi PII Censor',
 		name: 'aparaviPII',
-		icon: 'file:aparavi.svg',
+		// icon: 'aparavi.svg', // TODO: Fix icon display in n8n
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["piiType"]}}',
