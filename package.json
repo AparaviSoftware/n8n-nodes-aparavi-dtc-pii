@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-aparavi-dtc-pii",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "n8n community node for PII and HIPAA data anonymization using Aparavi DTC API. Detect and censor personally identifiable information and healthcare data in n8n workflows.",
   "keywords": [
     "n8n-community-node-package",
