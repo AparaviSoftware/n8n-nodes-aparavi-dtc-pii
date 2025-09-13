@@ -24464,6 +24464,30 @@ const PREDEFINED_PIPELINE_CONFIGS = {
     pipeline: {
         "components": [
           {
+            "id": "webhook_1",
+            "provider": "webhook",
+            "config": {
+              "hideForm": true,
+              "mode": "Source",
+              "type": "webhook"
+            },
+            "ui": {
+              "position": {
+                "x": 0,
+                "y": 220
+              },
+              "measured": {
+                "width": 140,
+                "height": 123
+              },
+              "data": {
+                "class": "source",
+                "type": "default"
+              },
+              "formDataValid": true
+            }
+          },
+          {
             "id": "parse_1",
             "provider": "parse",
             "config": {},
