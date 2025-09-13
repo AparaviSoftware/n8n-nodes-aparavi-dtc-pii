@@ -25081,17 +25081,9 @@ class AparaviDTC {
   getPipelineJson() {
     // Return the stored pipeline configuration
     // Handle both nested structure (pipeline.pipeline) and flat structure (direct export from DTC)
-    console.log('🔍 ===== getPipelineJson DEBUG =====');
-    console.log('🔍 Raw pipelineConfig:', JSON.stringify(this.pipelineConfig, null, 2));
-    console.log('🔍 Has pipeline property:', !!this.pipelineConfig.pipeline);
-    
     if (this.pipelineConfig.pipeline) {
-      console.log('🔍 Using nested pipeline structure');
-      console.log('🔍 Extracted pipeline:', JSON.stringify(this.pipelineConfig.pipeline, null, 2));
       return this.pipelineConfig.pipeline;
     }
-    console.log('🔍 Using flat pipeline structure');
-    console.log('🔍 ===== END getPipelineJson DEBUG =====');
     return this.pipelineConfig;
   }
 
@@ -25104,10 +25096,6 @@ class AparaviDTC {
    */
   async validatePipeline(pipelineJson) {
     try {
-      console.log('🔍 ===== VALIDATION DEBUG =====');
-      console.log('🔍 Sending to validation API:', JSON.stringify(pipelineJson, null, 2));
-      console.log('🔍 Validation API URL:', `${this.apiBaseUrl}/pipe/validate`);
-      
       const response = await fetch(`${this.apiBaseUrl}/pipe/validate`, {
         method: 'POST',
         headers: {
@@ -25142,14 +25130,6 @@ class AparaviDTC {
         pipeline: pipelineJson
       };
       
-      console.log('🔍 ===== DETAILED PIPELINE DEBUG =====');
-      console.log('🔍 Raw pipelineJson received:', JSON.stringify(pipelineJson, null, 2));
-      console.log('🔍 Request body being sent:', JSON.stringify(requestBody, null, 2));
-      console.log('🔍 Pipeline source:', requestBody.pipeline.source);
-      console.log('🔍 Pipeline project_id:', requestBody.pipeline.project_id);
-      console.log('🔍 Pipeline components count:', requestBody.pipeline.components ? requestBody.pipeline.components.length : 'undefined');
-      console.log('🔍 Component IDs:', requestBody.pipeline.components ? requestBody.pipeline.components.map(c => c.id) : 'undefined');
-      console.log('🔍 ===== END DEBUG =====');
       
       const response = await fetch(`${this.apiBaseUrl}/task`, {
         method: 'PUT',
