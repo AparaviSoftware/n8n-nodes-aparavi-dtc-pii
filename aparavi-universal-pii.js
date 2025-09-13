@@ -24460,7 +24460,7 @@ const PREDEFINED_PIPELINE_CONFIGS = {
       }
   },
   
-  CENSOR_USA_PII: {
+    CENSOR_USA_PII: {
     "pipeline": {
         "components": [
           {
@@ -24473,7 +24473,7 @@ const PREDEFINED_PIPELINE_CONFIGS = {
             },
             "ui": {
               "position": {
-                "x": 0,
+                "x": 120,
                 "y": 220
               },
               "measured": {
@@ -24493,7 +24493,7 @@ const PREDEFINED_PIPELINE_CONFIGS = {
             "config": {},
             "ui": {
               "position": {
-                "x": 180,
+                "x": 280,
                 "y": 60
               },
               "measured": {
@@ -24857,12 +24857,12 @@ const PREDEFINED_PIPELINE_CONFIGS = {
             },
             "ui": {
               "position": {
-                "x": 400,
-                "y": 140
+                "x": 480,
+                "y": 240
               },
               "measured": {
                 "width": 140,
-                "height": 77
+                "height": 61
               },
               "data": {
                 "class": "text",
@@ -24908,15 +24908,12 @@ const PREDEFINED_PIPELINE_CONFIGS = {
               "profile": "glinerMergedLarge",
               "glinerMergedLarge": {
                 "anonymizeChar": "█"
-              },
-              "glinerCommunitySmall": {
-                "anonymizeChar": "█"
               }
             },
             "ui": {
               "position": {
-                "x": 400,
-                "y": 240
+                "x": 680,
+                "y": 120
               },
               "measured": {
                 "width": 140,
@@ -24928,15 +24925,6 @@ const PREDEFINED_PIPELINE_CONFIGS = {
               },
               "formDataValid": true,
               "edges": [
-                {
-                  "selectable": true,
-                  "deletable": true,
-                  "id": "xy-edge__classify_1source-classifications-0-anonymize_text_1target-classifications-0",
-                  "source": "classify_1",
-                  "target": "anonymize_text_1",
-                  "sourceHandle": "source-classifications-0",
-                  "targetHandle": "target-classifications-0"
-                },
                 {
                   "selectable": true,
                   "deletable": true,
@@ -24954,14 +24942,19 @@ const PREDEFINED_PIPELINE_CONFIGS = {
                   "target": "anonymize_text_1",
                   "sourceHandle": "source-text-0",
                   "targetHandle": "target-text-1"
+                },
+                {
+                  "selectable": true,
+                  "deletable": true,
+                  "id": "xy-edge__classify_1source-classifications-0-anonymize_text_1target-classifications-0",
+                  "source": "classify_1",
+                  "target": "anonymize_text_1",
+                  "sourceHandle": "source-classifications-0",
+                  "targetHandle": "target-classifications-0"
                 }
               ]
             },
             "input": [
-              {
-                "lane": "classifications",
-                "from": "classify_1"
-              },
               {
                 "lane": "text",
                 "from": "parse_1"
@@ -24969,6 +24962,10 @@ const PREDEFINED_PIPELINE_CONFIGS = {
               {
                 "lane": "text",
                 "from": "webhook_1"
+              },
+              {
+                "lane": "classifications",
+                "from": "classify_1"
               }
             ]
           },
@@ -24980,8 +24977,8 @@ const PREDEFINED_PIPELINE_CONFIGS = {
             },
             "ui": {
               "position": {
-                "x": 580,
-                "y": 120
+                "x": 880,
+                "y": 80
               },
               "measured": {
                 "width": 140,
@@ -25010,34 +25007,10 @@ const PREDEFINED_PIPELINE_CONFIGS = {
                 "from": "anonymize_text_1"
               }
             ]
-          },
-          {
-            "id": "webhook_1",
-            "provider": "webhook",
-            "config": {
-              "hideForm": true,
-              "mode": "Source",
-              "type": "webhook"
-            },
-            "ui": {
-              "position": {
-                "x": 0,
-                "y": 220
-              },
-              "measured": {
-                "width": 140,
-                "height": 123
-              },
-              "data": {
-                "class": "source",
-                "type": "default"
-              },
-              "formDataValid": true
-            }
           }
         ],
         "source": "webhook_1",
-        "project_id": "c71ab76c-d609-42ed-ad32-7c966e8c778b"
+        "project_id": "8dd44f78-f0a7-4b81-88d7-db526cf609ea"
     }
   },
   
