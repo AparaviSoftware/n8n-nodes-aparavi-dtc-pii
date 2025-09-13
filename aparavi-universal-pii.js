@@ -25128,6 +25128,7 @@ class AparaviDTC {
       // The API expects the pipeline configuration directly
       const requestBody = pipelineJson;
       
+      
       const response = await fetch(`${this.apiBaseUrl}/task`, {
         method: 'PUT',
         headers: {
@@ -25594,6 +25595,7 @@ class AparaviDTC {
 if (typeof module !== 'undefined' && module.exports) {
   // Node.js CommonJS
   module.exports = AparaviDTC;
+  module.exports.PREDEFINED_PIPELINE_CONFIGS = PREDEFINED_PIPELINE_CONFIGS;
 } else if (typeof define === 'function' && define.amd) {
   // AMD (RequireJS)
   define([], function() { return AparaviDTC; });
