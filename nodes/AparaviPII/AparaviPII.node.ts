@@ -107,7 +107,7 @@ export class AparaviPII implements INodeType {
 						displayName: 'Preserve Structure',
 						name: 'preserveStructure',
 						type: 'boolean',
-						default: true,
+						default: false,
 						description: 'Whether to preserve the original data structure',
 					},
 					{
