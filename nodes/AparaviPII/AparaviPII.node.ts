@@ -16,7 +16,7 @@ export class AparaviPII implements INodeType {
 		icon: 'file:aparavi.svg',
 		group: ['transform'],
 		version: 1,
-		subtitle: '={{$parameter["operation"] + ": " + $parameter["piiType"]}}',
+		subtitle: '={{$parameter["piiType"]}}',
 		description: 'Censor PII using Aparavi DTC with flexible input handling',
 		defaults: {
 			name: 'Aparavi PII Censor',
