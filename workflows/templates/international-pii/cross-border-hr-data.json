@@ -21,6 +21,18 @@
     },
     {
       "parameters": {
+        "content": "## 🌍 International PII Processing\n\n**This workflow uses default settings:**\n- **`preserveStructure: false`** (default)\n- **`includeMetadata: false`** (default)\n\n### What this means:\n- **Simple output** - Original data is overwritten with censored data\n- **Clean results** - No extra properties, just censored data\n- **Easy to use** - Straightforward data structure\n\n### Data Structure:\n```json\n{\n  \"fullName\": \"████ ███████\",     // Censored data\n  \"email\": \"████@████.███\",       // Censored data\n  \"passport\": \"█████████\"         // Censored data\n}\n```\n\n**Perfect for:** Cross-border HR, international compliance, global data processing\n\n**Want audit trails?** Try the Advanced version for compliance reporting!",
+        "height": 544,
+        "width": 672
+      },
+      "id": "explanation-node",
+      "name": "Default PII Processing",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [680, -480]
+    },
+    {
+      "parameters": {
         "piiType": "international",
         "inputData": "auto",
         "censorChar": "█",

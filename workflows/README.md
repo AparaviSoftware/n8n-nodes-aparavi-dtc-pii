@@ -14,7 +14,9 @@ This directory contains ready-to-use n8n workflow templates that demonstrate the
 
 ### 🇺🇸 USA PII Workflows
 - **Banking Customer Onboarding** - Process customer applications with SSN, driver's license, and bank account censoring
+- **Banking Customer Onboarding - Advanced** - Same workflow but with `preserveStructure: true` for audit trails
 - **E-commerce Support Tickets** - Sanitize customer support tickets before processing
+- **E-commerce Support Tickets - With Metadata** - Same workflow but with `includeMetadata: true` for analytics
 
 ### 🌍 International PII Workflows  
 - **GDPR Data Export** - Create compliant data exports for EU customers
@@ -22,6 +24,7 @@ This directory contains ready-to-use n8n workflow templates that demonstrate the
 
 ### 🏥 HIPAA PII Workflows
 - **Medical Records Research** - Anonymize patient data for research purposes
+- **Medical Records - Advanced** - Same workflow but with BOTH `preserveStructure: true` AND `includeMetadata: true`
 - **Healthcare Provider Communication** - Safely share patient information between providers
 
 ## 🔧 Setup Instructions
@@ -228,6 +231,22 @@ Need help? We're here for you:
 - **Aparavi Discord**: [Join our community](https://discord.gg/ur9sRvJt)
 - **GitHub Issues**: [Report problems](https://github.com/AparaviSoftware/n8n-nodes-aparavi-dtc-pii/issues)
 - **n8n Community**: [n8n Community Forum](https://community.n8n.io/)
+
+## 🚀 Advanced Workflow Examples
+
+We've created advanced versions of some workflows that demonstrate the power of the PII Censor node's advanced features:
+
+### **Advanced Workflows Available:**
+- **Banking Customer Onboarding - Advanced** - Shows `preserveStructure: true` benefits
+- **E-commerce Support Tickets - With Metadata** - Demonstrates `includeMetadata: true` capabilities  
+- **Medical Records - Advanced** - Uses BOTH features for maximum functionality
+
+### **Why Use Advanced Features?**
+- **`preserveStructure: true`** - Perfect for compliance workflows, audit trails, debugging
+- **`includeMetadata: true`** - Great for analytics, compliance reporting, PII pattern analysis
+- **Both together** - Maximum functionality for enterprise compliance and research use cases
+
+Each advanced workflow includes detailed annotation nodes explaining what the features enable and why you'd want to use them.
 
 ## ⚙️ PII Censor Node Options
 

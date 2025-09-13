@@ -21,6 +21,30 @@
     },
     {
       "parameters": {
+        "content": "## 🔒 Basic PII Processing\n\n**This workflow uses default settings:**\n- **`preserveStructure: false`** (default)\n- **`includeMetadata: false`** (default)\n\n### What this means:\n- **Simple output** - Original data is overwritten with censored data\n- **Clean results** - No extra properties, just censored data\n- **Easy to use** - Straightforward data structure\n\n### Data Structure:\n```json\n{\n  \"name\": \"████ ████\",        // Censored data\n  \"ssn\": \"███-██-████\",       // Censored data\n  \"email\": \"████@████.███\"    // Censored data\n}\n```\n\n**Perfect for:** Simple workflows, basic PII protection, straightforward data processing\n\n**Want more?** Try the Advanced version for audit trails and metadata!",
+        "height": 544,
+        "width": 672
+      },
+      "id": "explanation-node",
+      "name": "Default PII Processing",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [680, -480]
+    },
+    {
+      "parameters": {
+        "content": "## 🎬 Video Script - Banking Customer Onboarding\n\n### **Opening (0-30s)**\n• Welcome to n8n PII Censoring workflow demo\n• Show the banking customer onboarding use case\n• Explain why PII protection is critical for financial services\n\n### **Data Setup (30s-1m)**\n• Walk through the sample customer data\n• Show SSN, driver's license, bank account numbers\n• Highlight the sensitive information that needs protection\n\n### **PII Processing (1m-2m)**\n• Demonstrate the Aparavi PII Censor node\n• Show USA PII type selection\n• Explain default settings (preserveStructure: false)\n• Run the workflow and show censored output\n\n### **Results Analysis (2m-2:30s)**\n• Compare original vs censored data\n• Show how SSN becomes ███-██-████\n• Explain the business value for compliance\n\n### **Advanced Options (2:30s-3m)**\n• Mention advanced version with preserveStructure: true\n• Show when you'd want audit trails\n• Wrap up with next steps",
+        "height": 800,
+        "width": 800
+      },
+      "id": "video-script",
+      "name": "Video Script",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [1400, -600]
+    },
+    {
+      "parameters": {
         "piiType": "usa",
         "inputData": "auto",
         "censorChar": "█",
@@ -30,10 +54,24 @@
       "name": "Censor USA PII",
       "type": "n8n-nodes-aparavi-dtc-pii.aparaviPII",
       "typeVersion": 1,
-      "position": [680, 300],
+      "position": [900, 300],
       "credentials": {
         "aparaviApi": "aparavi-api-credential"
       }
+    },
+    {
+      "parameters": {
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "options": {
+          "height": 315,
+          "width": 560
+        }
+      },
+      "id": "video-node",
+      "name": "Demo Video",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [1200, 300]
     },
     {
       "parameters": {
@@ -43,7 +81,7 @@
       "name": "Create Summary",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [900, 300]
+      "position": [1120, 300]
     },
     {
       "parameters": {
@@ -72,7 +110,7 @@
       "name": "Check Status",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
-      "position": [1120, 300]
+      "position": [1340, 300]
     },
     {
       "parameters": {
@@ -195,5 +233,39 @@
   "tags": [],
   "triggerCount": 0,
   "updatedAt": "2024-01-15T10:00:00.000Z",
-  "versionId": "1"
+  "versionId": "1",
+  "groups": [
+    {
+      "id": "data-setup-group",
+      "name": "📊 Data Setup",
+      "color": "#FF6B6B",
+      "nodes": ["Manual Trigger", "Sample Customer Data"],
+      "position": [200, 200],
+      "dimensions": [300, 200]
+    },
+    {
+      "id": "pii-processing-group",
+      "name": "🔒 PII Processing",
+      "color": "#4ECDC4",
+      "nodes": ["Censor USA PII", "Default PII Processing"],
+      "position": [800, 200],
+      "dimensions": [300, 200]
+    },
+    {
+      "id": "analysis-group",
+      "name": "📈 Analysis & Results",
+      "color": "#45B7D1",
+      "nodes": ["Create Summary", "Check Status", "Ready for Compliance Review", "Needs Additional Processing"],
+      "position": [1100, 200],
+      "dimensions": [400, 300]
+    },
+    {
+      "id": "video-group",
+      "name": "🎬 Video Resources",
+      "color": "#96CEB4",
+      "nodes": ["Video Script", "Demo Video"],
+      "position": [1200, 50],
+      "dimensions": [600, 600]
+    }
+  ]
 }
